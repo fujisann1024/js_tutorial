@@ -51,11 +51,59 @@ m[2] = '緑';
 console.log(m);
 
 //定数に値渡し、参照渡しをそれぞれやる
- const tax =  1.08;
- //tax = 1.1; エラー　Assignment to constant variable.
+ const TAX =  1.08;
+ //TAX = 1.1; エラー　Assignment to constant variable.
 
- const date = ['name','age','weight'];
+ let date = ['name','age','weight'];
  //date = ['red','blue','green']; Assignment to constant variable.
  date[0] = 'user';
  console.log(date);//(3) ["user", "age", "weight"]
- 
+
+//配列の内容を別々の変数に代入したい
+//分割代入
+let score = [25,36,95,152,99];
+let [x0,x1,x2,x3,x4,x5] = score;
+console.log(x0);
+console.log(x1);
+console.log(x2);
+console.log(x3);
+console.log(x4);
+console.log(x5);//undefined(未定義)
+let[a,b,c] = score;
+console.log(a);
+console.log(b);
+console.log(c);
+
+//...演算子の利用
+let [num,...last] = score;
+console.log(num);//25
+console.log(last);//(4) [36, 95, 152, 99]
+
+//変数のスワップ(入れ替え)
+let white = '白';
+let black = '黒';
+[white,black] = [black,white];
+console.log(white);//黒
+console.log(black);//白
+
+//オブジェクトの内容の分割代入(ES2015)
+let member = {mid: 'tko', name1:'佐藤', age1:25};
+let { name1, age1, birth} = member;
+
+console.log(name1);
+console.log(age1);
+console.log(birth);//undefined
+
+//名前が一致していればよいので並び順で1対1にしなくてもよい
+
+//...演算子で残りの要素もまとめる(ES2018)
+let {mid, ...other} = member;
+console.log(mid);//tko
+console.log(other);//{name1: "佐藤", age1: 25}
+
+//変数に別名をつける
+let {name1: author, age1: old} = member;
+console.log(author);//佐藤
+console.log(old);//25
+
+

@@ -46,14 +46,14 @@ console.log('私は\\人間です');
 
 //複数行にまたがる文字列を表現したい
 //テンプレート文字列「`string`」
-const message = `こんにちは
+const MASSAGE = `こんにちは
 　皆さん`;
-console.log(message);
+console.log(MESSAGE);
 
 //文字列に変数を埋め込む
-const sport = "サッカー";
+const SPORTS = "サッカー";
 console.log(`私の好きなスポーツは
-${sport}です`);
+${SPORTS}です`);
 
 //配列 let 配列名 = [];
 //配列の宣言
@@ -75,7 +75,7 @@ data2[1] = "渡辺";
 console.log(data2[1]);
 
 //入れ子の配列を生成
-const data3 = [
+let data3 = [
     "日本",
     ["東京","大阪","愛知"],
     ["京都","横浜"]
