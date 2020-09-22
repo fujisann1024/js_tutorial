@@ -24,11 +24,20 @@
 　//要素の属性を設定したい
   let ank = document.querySelector('a');
   console.log(ank);
-  let change = ank.setAttribute('title','外部サイトに移動します');
-  console.log(change);
+  ank.setAttribute('title','外部サイトに移動します');
 
   //要素の属性を習得したい
-
+let ank1 = document.querySelector('div > .test1');
+console.log(ank1.getAttribute('href'));//#
   //要素の属性を消去したい
+let ank2 = document.querySelector('div > .test2');
+ank2.removeAttribute('target');
+console.log(ank2);//<a href="#" class="test2">リンク2</a>
 
-  //要素に指定の属性が存在するかどうかを判定したい
+//要素配下のテキストを設定したい
+let good = document.querySelector('#good');
+let bad = document.querySelector('#bad');
+//HTMLとして解釈させて表示させたい場合
+good.innerHTML = "<h1>ただいま</h1>";
+//タグの中に表示させたい場合
+bad.textContent = "<h1>ただいま</h1>";
