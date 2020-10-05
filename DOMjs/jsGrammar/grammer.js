@@ -46,8 +46,8 @@ console.log('私は\\人間です');
 
 //複数行にまたがる文字列を表現したい
 //テンプレート文字列「`string`」
-const MASSAGE = `こんにちは
-　皆さん`;
+const MESSAGE = `こんにちは
+皆さん`;
 console.log(MESSAGE);
 
 //文字列に変数を埋め込む
