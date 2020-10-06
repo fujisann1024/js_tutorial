@@ -136,10 +136,45 @@ console.log(product(2,3,4,5));
 console.log(product(...[3,4,5]));
 
 //関数を引数として渡したい
-function benchmark(){
+function benchmark(proc){
   let start = new Date(); //開始時刻
   proc ();
-  let end = new Date();
-  return end.getTime()-start.getTime();
-
+  let end = new Date();//終了時刻
+  return end.getTime()-start.getTime();//計測時間
 }
+
+//指定された匿名関数の処理時間を計測
+//コールバック関数
+console.log(
+  benchmark(function(){
+    let x = 15;
+    for(let i = 0; i < 10000000; i++){
+      x *= i;
+    }
+  })
+);
+
+//関数から複数の値を返したい
+function getSumAverage(...values){
+  let result = 0;
+  //可変長引数の内容を順に足しこむ
+  for(let value of values){
+    result += value;
+  }
+  return [result, result/values.length];
+}
+
+let [sum, average] = getSumAverage(3,4,5,6);
+//let [, average] = getSumAverage(3,4,5,6); 平均値だけが変数averageに代入され、合計値は省略される
+console.log(sum);//18
+console.log(average);//4.5
+
+//ジェネレーター　
+/**
+ * function* range(start, end){
+ *  yeild 処理;
+ * }
+ */
+
+ 
+
