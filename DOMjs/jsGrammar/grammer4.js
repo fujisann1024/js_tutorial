@@ -171,10 +171,97 @@ console.log(average);//4.5
 
 //ジェネレーター　
 /**
- * function* range(start, end){
+ * function* 関数名(引数){
  *  yeild 処理;
  * }
  */
 
+/**
+ * returnとyeildの違い
+ * returnはそれ以降の処理を終了する
+ * yeildは一時停止
+ */
+function range1(start, end){
+  for(let i = start; i < end; i++){
+    return i;
+  }
+}
  
+function* range2(start, end){
+  for(let i = start; i < end; i++){
+    yield i;
+  }
+}
 
+//エラー
+// for(let num of range1(10,20)){
+//   console.log(num);
+// }
+
+console.log(range1(10,20));
+
+for(let num of range2(10,20)){
+  console.log(num);
+}
+
+//タグ付きテンプレート～func`文字列`
+/**
+ * タグ付きテンプレートで呼び出される関数の条件
+ * ・引数として「テンプレート文字列を分解したもの(配列)」「埋め込まれた変数（可変長引数）」を受け取ること
+ * ・戻り値として最終的に加工された結果、文字列を返すこと
+ * strs:["はじめまして、"," ! ",]
+ * vars:["<\"Pochi\"&'Tama'>"]
+ */
+
+//HTMLエスケープを行う関数
+//replace関数～文字列.replace(パターン,置換文字);
+function htmlEscape(str){
+  //strが基本的に
+  if(!str){ return '';}
+  return str.replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+}
+
+//分解されたstr/varsを交互に連結(varsはエスケープ処理)
+function e(strs,...vars){
+  let result = '';
+  for(let i = 0; i <strs.length; i++){
+    result += strs[i] + htmlEscape(vars[i]);
+  }
+  return result;
+}
+
+let name = '<"Pochi" & \'Tama\' >';
+console.log(e`はじめまして,${name}!`);//はじめまして,&lt;&quot;Pochi&quot; &amp; &#39;Tama&#39; &gt;!
+
+//スコープ～変数の有効範囲
+let scope = 'Grobal';
+
+function show(){
+  let scope = 'local';
+  return scope;
+}
+
+console.log(scope);//Grobal
+console.log(show());//local
+
+//なぜ変数宣言をverでするのは非推奨なのか
+
+if(true){
+   let item1 = "攻撃";
+   var item2 = "回復";
+}
+ 
+//console.log(item1); Uncaught ReferenceError: item1 is not defined at grammer4.js:256
+console.log(item2);
+
+//変数の巻き上げ
+let scope1 = 'Grobal';
+
+function show(){
+  console.log(scope1);//grammer4.js:263 Uncaught ReferenceError: Cannot access 'scope1' before initialization
+  let scope1 = 'Local';
+  return scope1;
+}
+show();

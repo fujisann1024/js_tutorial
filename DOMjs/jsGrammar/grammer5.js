@@ -88,9 +88,63 @@ console.log(typeof animals.join());//string
 //第二引数～取り出す要素の個数
 console.log(animals.slice(1,3));//(2) ["うさぎ", "コアラ"]
 
+animalsX = ['a','b','c','d'];//(4) ["a", "b", "c", "d"]
 //配列の内容を置き換えたい
-console.log();
+console.log(animalsX);//
+//splice(開始位置,要素数,[置換後の要素]);
+console.log(animalsX.splice(2,2,'ねこ','いぬ'));//(2) ["c", "d"]
+console.log(animalsX);//(4) ["a", "b", "ねこ", "いぬ"]
+console.log(animalsX.splice(-4,2,'さる','とり'));// (2) ["a", "b"]
+console.log(animalsX);//(4) ["さる", "とり", "ねこ", "いぬ"]
 
+//配列内の要素を特定の値に設定したい
+//fill(設定する値,開始位置(インデックス),終了位置(インデックス));
+console.log(animalsX.fill('-',1,3));(4) ["さる", "-", "-", "いぬ"]
 
+//配列の要素を並べ替えたい
+let data3 = ['ぱんだ','うさぎ','コアラ'];
+ //並び順を逆順にする
+ data3.reverse();
+ console.log(data3);
 
+ //配列を任意のルールで並び替える
+ let numberArray = [65,20,36,45,90];
+ let sortArray = numberArray.sort();
+ console.log(sortArray);
 
+ let key = ['部長','課長','係長','主任'];
+
+ //ソート対象のメンバーリスト
+ let memberList = [
+    {name: '山田',　position: '主任'},
+    {name: '鈴木',　position: '部長'},
+    {name: '田中',　position: '課長'},
+    {name: '佐藤',　position: '課長'},
+ ];
+
+ //役割(position)の、配列keyにおける位置の大小で比較
+
+console.log(memberList.sort(function(m,n){
+    return key.indexOf(m.position) - key.indexOf(n.position);
+ })); 
+ /**
+  * (4) [{…}, {…}, {…}, {…}]
+0: {name: "鈴木", position: "部長"}
+1: {name: "田中", position: "課長"}
+2: {name: "佐藤", position: "課長"}
+3: {name: "山田", position: "主任"}
+length: 4
+  */
+     
+//配列内の要素を別の位置に移動したい
+//copyWithin(移動先,コピー開始位置,コピー終了位置);
+
+let music = ['ド','レ','ミ','ファ','ソ'];
+music.copyWithin(1,2,3);
+console.log(music);
+
+//配列を複製したい
+let zoo = ['キリン','ゾウ','ライオン'];
+let copy = Array.from(zoo);
+console.log(zoo);//(3) ["キリン", "ゾウ", "ライオン"]
+console.log(copy);//(3) ["キリン", "ゾウ", "ライオン"]
