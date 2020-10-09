@@ -148,3 +148,80 @@ let zoo = ['キリン','ゾウ','ライオン'];
 let copy = Array.from(zoo);
 console.log(zoo);//(3) ["キリン", "ゾウ", "ライオン"]
 console.log(copy);//(3) ["キリン", "ゾウ", "ライオン"]
+//ただし
+console.log(zoo === copy);//false=>シャローコピー
+//シャローコピーとは
+zoo[0] = 'パンダ';
+
+console.log(zoo);//(3) ["パンダ", "ゾウ", "ライオン"]
+console.log(copy);//(3) ["キリン", "ゾウ", "ライオン"]
+
+//配列の内容を順に処理したい
+//forEach(function(要素値,インデックス値,配列){処理},thisがあらわす値)
+//コールバックの引数は省略可能
+let dogs = [
+    {name:'フレンチドック', type:'いぬ'},
+    {name:'ヨークシャーテリア', type:'いぬ'},
+    {name:'ダックスフンド', type:'いぬ'},
+    {name:'スコティッシュ', type:'ねこ'},
+    {name:'ポメラニアン', type:'いぬ'},
+];
+//整形結果を格納するための配列
+let result = [];
+dogs.forEach(function (value){
+    this.push(value.name + ':' + value.type);
+},result);
+console.log(result);
+/*
+["フレンチドック:いぬ", 
+ "ヨークシャーテリア:いぬ",
+ "ダックスフンド:いぬ", 
+ "スコティッシュ:ねこ", 
+ "ポメラニアン:いぬ"]
+*/
+/**
+ * 配列の要素を順番に加工したい
+ * map(function(要素値,インデックス値,配列){処理},thisがあらわす値)
+ */
+let data4 = [1,2,3];
+//個々の配列要素を2乗した配列を返す
+let power = data4.map(function(value){
+    return value * value;
+});
+console.log(power);//(3) [1, 4, 9]
+
+/**
+ * 配列の内容を特定の条件で絞り込みたい
+ *  filter(function(要素値,インデックス値,配列){処理},thisがあらわす値)
+ */
+let dogs2 = [
+    'フレンチブルドッグ',
+    'ヨークシャーテリア',
+    'ダックスフンド',
+    'ポメラニアン',
+    'コーギー',
+];
+//文字列長が8文字未満の要素だけを残すコード
+let short = dogs2.filter(function(value){
+    return (value.length < 8);
+});
+console.log(short);//(3) ["ダックスフンド", "ポメラニアン", "コーギー"]
+
+/**
+ * 配列の要素がすべて与えられた条件に合致するかを判定したい
+ * every(function(要素値,インデックス値,配列){処理},thisがあらわす値)
+ */
+console.log(dogs2);//(5) ["フレンチブルドッグ", "ヨークシャーテリア", "ダックスフンド", "ポメラニアン", "コーギー"]
+
+console.log(dogs2.every(function(value){
+    return (value.length < 8);//false
+}));
+
+/**
+ * 配列の要素が一つでも与えられた条件に合致するかを判定したい
+ * some(function(要素値,インデックス値,配列){処理},thisがあらわす値)
+ */
+
+console.log(dogs2.some(function(value){
+    return (value.length < 8);//true
+}));
