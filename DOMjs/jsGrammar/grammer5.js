@@ -225,3 +225,26 @@ console.log(dogs2.every(function(value){
 console.log(dogs2.some(function(value){
     return (value.length < 8);//true
 }));
+
+let books = [
+    {
+        title: '独習C# 新版',
+        price: 3600,
+    },
+    {
+        title: '独習 webpack',
+        price: 454,
+    },
+    {
+        title: 'Angularアプリプログラミング',
+        price: 3700,
+    },
+];
+//書籍情報の配列から価格が2000円未満のものを取り出す例
+console.log(books.find(function(value){
+    return (value.price < 2000);//{title: "独習 webpack", price: 454}
+}));
+
+/**
+ * reduce(function(結果値,要素値,インデックス値,元の配列){処理},初期値);
+ */
