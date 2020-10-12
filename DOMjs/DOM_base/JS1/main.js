@@ -18,7 +18,7 @@
       console.log(key.item(i).textContent);//soccor baseball
   }
 
-  //セレクター式で要素を検索したい
+  //セレクター式で要素を検索したい～基本的に要素を取得するときはこいつを使う
   let h2 = document.querySelector('#s');
   console.log(h2);
 　//要素の属性を設定したい

@@ -6,6 +6,49 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form>
+        <!--　①テキストボックス(エリア)の値を取得,設定したい-->
+        <div>
+            <label for="name">氏名:</label><br>
+            <input id="name" name="name" type="text" size="20">
+        </div>
+        <div>
+            <label for="profile">プロフィール:</label><br>
+            <textarea id="profile" name="profile" rows="4" cols="30"></textarea>
+        </div>
+        <input id="btn1" type="button" value="送信">
+        <!--　②選択ボックスの値を取得/設定をしたい-->
+        <div>
+            <label for="season">四季：</label>
+            <select id="season" name="season">
+                <option value="spring">春</option>
+                <option value="summer">夏</option>
+                <option value="autumn">秋</option>
+                <option value="winter">冬</option>
+            </select>
+        </div>
+        <!-- ③ラジオボタンの値を取得したい-->
+        <div>
+            <label>
+                <input type="radio" name="os" value="windows">Windows
+            </label>
+            <label>
+                <input type="radio" name="os" value="mac">Mac
+            </label>
+            <label>
+                <input type="radio" name="os" value="unix">Unix
+            </label>
+            <input id="btn3" type="button" value="送信">
+        </div>
+        <!-- ④チェックボックスの値を取得したい-->
+        <div>
+            お知らせメールを希望しますか?:<br>
+            <label>
+                <input id="mail" type="checkbox" name="mail" value="お知らせ希望">
+                希望する
+            </label>
+        </div>
+    </form>
+    <script src="main.js"></script>
 </body>
 </html>
