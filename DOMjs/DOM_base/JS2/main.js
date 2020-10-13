@@ -34,4 +34,12 @@ document.getElementById('btn3').addEventListener('click',function(){
     console.log(getRadioButton('os'));
 },false);
 
-
+let mail = document.getElementById('mail');
+//チェックボックス変更時に、その値に応じてログを表示
+mail.addEventListener("change",function(){
+    if(mail.checked){
+        console.log(mail.value);
+    }else{
+        console.log("お知らせは,配信されません");
+    }
+},false);
