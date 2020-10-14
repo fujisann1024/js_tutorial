@@ -36,10 +36,23 @@ document.getElementById('btn3').addEventListener('click',function(){
 
 let mail = document.getElementById('mail');
 //チェックボックス変更時に、その値に応じてログを表示
-mail.addEventListener("change",function(){
+mail.addEventListener('change',function(){
     if(mail.checked){
         console.log(mail.value);
     }else{
         console.log("お知らせは,配信されません");
     }
 },false);
+
+//ラジオボタン/チェックボックス
+let setRadioButton = function(name,value){
+    let elems = document.getElementsByName(name);
+    //ラジオボタンを操作し、該当する値(value属性)を持つものをチェック
+    for(let i = 0; i < elems.length; i++){
+        if(elems[i].value === value){
+            elems.checked = true;
+        }
+    }
+};
+setRadioButton('os','mac');
+
