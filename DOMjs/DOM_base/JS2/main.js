@@ -29,6 +29,7 @@ let getRadioButton = function (name) {
     return result;
 }
 
+//④値を取得
 //[送信]ボタンクリックでラジオボタンの値を取得
 document.getElementById('btn3').addEventListener('click',function(){
     console.log(getRadioButton('os'));
@@ -45,6 +46,7 @@ mail.addEventListener('change',function(){
 },false);
 
 //ラジオボタン/チェックボックス
+//引数 name:ラジオボタンの名前 ,value:設定値
 let setRadioButton = function(name,value){
     let elems = document.getElementsByName(name);
     //ラジオボタンを操作し、該当する値(value属性)を持つものをチェック
@@ -55,4 +57,35 @@ let setRadioButton = function(name,value){
     }
 };
 setRadioButton('os','mac');
+
+//引数 name:チェックボックスの名前,value:設定値(配列)
+let setCheckBox = function(name,value){
+    let elmes = document.getElementsByName(name);
+    //チェックボックスを走査し、該当する値を持つものをチェック
+    for(let i = 0; i < elmes.length; i++){
+        if(value.indexOf(elmes[i].value) > -1){
+            elmes[i].checked = true;
+        }
+    }
+};
+setCheckBox('os',['windows','mac']);
+
+let getListbox = function (name){
+    //選択肢を格納するための配列を準備
+    let result = [];
+    //指定されたリストボックス配下の<option>要素を取得
+    let elmes = document.getElementById(name).options;
+    //<options>要素を順に走査し、選択状態にあるかを判定する
+    for(let i = 0; i < elmes.lengthl; i++){
+        if(elmes[i].selected){
+            result.push(elmes[i].value);
+        }
+    }
+    return result;
+};
+
+//リストボックス変更時に、その値を取得
+document.getElementById('os').addEventListener('change',function(){
+    console.log(getListbox('os'));
+},false);
 

@@ -48,6 +48,28 @@
                 希望する
             </label>
         </div>
+        <!-- ⑤リストボックスの値を取得したい-->
+        <div>
+            <label for="os">お使いのOSは?</label>
+            <select id = "os" multiple size= "3">
+                <option value = "windows">Windows</option>
+                <option value = "mac">Mac OS</option>
+                <option value = "unix">Unix</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="os2">お使いのOSは?
+                Windows<input id="os2" type = "checkbox" name="os" value= "windows">
+            </label>
+            <label for="os2">
+               Mac OS<input id="os2" type = "checkbox" name="os" value= "Mac OS">
+            </label>
+            <label for="os2">
+                Unix<input id="os2" type = "checkbox" name="os" value= "unix">
+            </label>
+
+        </div>
     </form>
     <script src="main.js"></script>
 </body>
