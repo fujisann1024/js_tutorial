@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+input:valid{
+    background-color: white;
+}
+
+input:invalid{
+    background-color: rgb(255,192,203);
+}

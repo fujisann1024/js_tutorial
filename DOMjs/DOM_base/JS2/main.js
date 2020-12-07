@@ -186,3 +186,4 @@ upfile.addEventListener("change",function(){
         result.textContent = text;
     });
 },false);
+

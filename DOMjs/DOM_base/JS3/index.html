@@ -6,9 +6,43 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name = "viewport" content="width=device-width,user-scalable=0">
-    <title></title>
+    <link rel="stylesheets" href="form.css">
+    <title>study</title>
 </head>
 <body>
-
+<!--フォーム検証-->
+<h2>ユーザー登録</h2>
+<from id = "fm">
+    <div>
+        <!-- minlength～文字列長が指定値より短くないか
+             maxlength～文字列長が指定地より長くないか
+             required～何らかの値が設定されているか-->
+        <label for="name">氏名</label><br>
+        <input id="name" type="text" name="name" 
+        minlength="2" maxlength="10" required>
+    </div>
+    <div>
+        <!--max～最大値を超えていないか
+            min～最小値を下回っていないか-->
+        <label for="age">年齢</label><br>
+        <input id = "age" type = "number" name = "age" min = "20" max = "60">
+    </div>
+    <div>
+        <!--patttern～正規表現にマッチしているか-->
+        <label for = "zip">郵便番号</label><br>
+        <input id = "zip" type = "text" name = "zip" pattern = "\d{3}-\d{4}">
+    </div>
+    <div>
+        <label for = "mail">メールアドレス</label><br>
+        <!--type = email～正しいメールアドレスであるか-->
+        <input id = "mail" type = "email" name="mail">
+    </div>
+    <div>
+        <label for ="url">URL</label><br>
+        <input id = "url" type = "url" name = "url">
+    </div>
+    <input id = "send" type = "submit" value = "送信">
+    <script src="main.js"></script>
+</from>
 </body>
 </html>
