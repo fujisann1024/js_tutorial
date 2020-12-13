@@ -3,9 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "../jquery/jquery-3.5.1.min.js"></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <section>
+        <h1>要素の表示/非表示</h1>
+        <div id = "element">表示</div>
+
+        <button class = "show">表示</button><br>
+        <button class = "hidden">非表示</button><br>
+        <button class = "toggle">表示/非表示</button><br>
+        <hr>
+        <button id= "see">表示されているかどうか</button>
+        <button id = no_see>表示されてないかどうか</button>
+    </section>
+    <hr>
+    <section>
+        <h1>要素の削除</h1>
+        <ul>
+            <li class = "test1">リスト1</li>
+            <li class = "test2">リスト2</li>
+            <li class = "test3">リスト3</li>
+        </ul>
+    </section>
+    <hr>
+    <section>
+        <h1>要素のスタイルの変更</h1>
+        <div id = "word">クリックすると赤色の文字になります</div>
+        <button id = "change_red">クリック</button><br>
+
+        <div id = "change">クリックすると変化します</div>
+        <button id = "change_style">クリック</button><br>
+
+    </section>
+    <hr>
+    <section>
+        <h1>属性の取得</h1>
+        <input type="text" name="text1">
+        <input type="text" name="text2" disabled>
+
+        <input type="checkbox" name="check1">
+        <input type="checkbox" name="check2" checked>
+
+        <div class = "removeAttr">
+            <a id = "remove1" href="#">リンク1</a>
+        </div>
+
+        <input type = "text" name = "input_text" disabled>
+        <button id = "remove2">入力可能にする</button>
+    </section>
+
+    <script>
+        $(function(){
+            //要素の表示
+            $(".show").click(function(){
+                $("#element").show();
+            });
+            //要素の非表示
+            $(".hidden").click(function(){
+                $("#element").hide();
+            });
+            //要素の表示/非表示
+            $(".toggle").click(function(){
+                $("#element").toggle();
+            });
+
+            //要素の判定
+            $("#see").click(function(){
+                if($("#element").is(":visible")){
+                    alert("Yse");
+                }else{
+                    alert("No");
+                }
+            });
+
+            $("#no_see").click(function(){
+                if($("element").is(":hidden")){
+                    alert("Yse");
+                }else{
+                    alert("No");
+                }
+            });
+ 
+            //要素の中身を削除
+            $(".test2").empty();
+            //要素を削除
+            $(".test3").remove();
+
+            //スタイルの変更
+            $("#change_red").click(function(){
+                $("#word").css("color","red")
+            });
+
+            //複数のスタイルの変更
+            $("#change_style").click(function(){
+                $("#change").css({
+                    "color":"red",
+                    "font-weight":"bold",
+                    "background-color":"skyblue"
+                });
+            });
+
+            //スタイルを元に戻すならcss('color':'';)～空文字をセットする
+
+            //属性の取得
+            //disabled～入力不可
+            //checked～チェック状態
+                //attrとpropの違い
+            console.log('↓入力可能なテキストボックス↓');
+            console.log( 'attr:' + $('[name="text1"]').attr('disabled') );//undefined
+            console.log( 'prop:' + $('[name="text1"]').prop('disabled') );//false
+            
+            console.log('↓入力不可なテキストボックス↓');
+            console.log( 'attr:' + $('[name="text2"]').attr('disabled') );//disabled
+            console.log( 'prop:' + $('[name="text2"]').prop('disabled') );//true
+            
+            console.log('↓未チェックのチェックボックス↓');
+            console.log( 'attr:' + $('[name="check1"]').attr('checked') );//undefined
+            console.log( 'prop:' + $('[name="check1"]').prop('checked') );//false
+            
+            console.log('↓チェック済みのチェックボックス↓');
+            console.log( 'attr:' + $('[name="check2"]').attr('checked') );//checked
+            console.log( 'prop:' + $('[name="check2"]').prop('checked') );//true
+            //attr 属性がアクティブならその属性値を返す。無ければundefied
+            //prop 属性がアクティブなら真偽値を返す
+
+            //属性の削除
+            console.log($(".removeAttr").html());//  <a href="#">リンク1</a>
+            $("#remove1").removeAttr("href");
+            console.log($(".removeAttr").html());//<a id="remove1">リンク1</a>
+
+            $('#remove2').click(function(){
+                $('[name="input_text"]').removeProp('disabled');
+            });
+            
+        });
+    </script>
 </body>
 </html>
