@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+    <!--headタグで読み込む-->
+    <script src = "../jquery/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div id = "warpper">
+        <div id = "title">jquery</div>
+        <button class = "btn">クリック</button>
+
+        <section>
+            <ul>
+                <li>soccer</li>
+                <li>baseball</li>
+                <li>basketball</li>
+            </ul>
+            <ul>
+                <li>蹴球</li>
+                <li>野球</li>
+                <li>籠球</li>
+            </ul>
+        </section>
+        <hr>
+        <section>
+            <div class = "getData">
+                <p>取得用のテキスト</p>
+            </div>
+
+            <ul class = "ulGetData">
+                <li>データ1</li>
+                <li>データ2</li>
+                <li>データ3</li>
+            </ul>
+        </section>
+        <hr>
+        <section>
+            <input type = "text" class = "textbox" value = "テキスト">
+            <input type = "button" class = "text_checkbox" value = "テキストボックスの値を取得">
+        </section>
+        <hr>
+        <section>
+            <div id = "soccer">サッカー</div>
+            <div id = "baseball">野球</div>
+            <button id = "button1">text()でサッカーを変更する</button>
+            <button id = "button2">text()で野球を変更する</button>
+            <button id = "button3">html()で野球を変更する</button>
+        </section>
+    </div>
+    <!-- jquery 参考サイトhttps://kinocolog.com/jquery/-->
+    <script>
+    //$(function(){});～すべてのHTML要素を取得してから実行するという意味。この波カッコの中に
+    //記述していく
+    $(function(){
+        //$("セレクタ").メソッド("値",...);
+        //セレクタを値で処理する
+        //例 id=titleの要素を取得してcssのcolorプロパティを赤で指定する
+        $("#title").css("color","red");
+
+        //ボタンをクリックしたらid="title"のタグで囲まれたテキストの文字色を青色に変える
+        $(".btn").click(function(){
+            $("#title").css("color","blue");
+        });
+
+        //$(this)～取得した要素を参照する
+        $("ul").click(function(){
+            $(this).children("li").css("color","red");
+        });
+
+        $("li").click(function(){
+            $(this).parent("ul").css("color","blue");
+        });
+
+        //デバック方法
+        //オブジェクトの中身
+        console.log($("li"));
+
+        //オブジェクトの中身の数
+        console.log($("li").length);
+
+        //text()とhtml()の違い
+        let text = $(".getData").text();
+        console.log(text);
+
+        let html = $(".getData").html();
+        console.log(html);
+
+        //要素が複数ある場合
+        let texts = $(".ulGetData").text();
+        console.log(texts);
+
+        let htmls = $(".ulGetData").html();
+        console.log(htmls);
+
+        //個別に要素を取得したい
+            $(".ulGetData").each(function(key,value){
+            console.log($(value).text());
+        })
+
+        //フォーム内のテキストの取得
+        $(".text_checkbox").click(function(){
+            alert($(".textbox").val())
+        });
+
+        //テキストの変更
+        $("#button1").click(function(){
+            $("#soccer").text("soccer");
+        });
+
+        $("#button2").click(function(){
+            $("#baseball").text("<p>baseball</p>");
+        });
+
+        $("#button3").click(function(){
+            $("#baseball").html("<p>baseball</p>");
+        });
+
+
+
+
+
+    });
+    </script>
+</body>
+</html>

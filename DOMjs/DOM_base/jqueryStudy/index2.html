@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "../jquery/jquery-3.5.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        .screen1,.screen2{
+            border:solid 1px black;
+            padding: 40px;
+            margin:50px;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <button id = "button1">クリックしてね</button>
+
+        <div class = "sample1">ボタン</div>
+    </section>
+    <hr>
+    <section>
+        <h1>Webサイト</h1>
+        <button id = "dbclick">ダブルクリック</button><br>
+
+        <button id = "push_pull_mouse" style = "background-color: blue;">
+        マウスでクリック</button><br>
+
+        <button id = "mouse_hover">カーソル</button>
+    </section>
+    <hr>
+    <section>
+        <h1>スマホ用</h1>
+        <div class = "screen1"></div>
+        <div class = "screen2"></div>
+    </section>
+    <hr>
+    <section>
+        <label for = "focus_text">フォーカステキスト</label>
+        <input type = "text" id = "focus_text"><br>
+
+        <label for = "change_radio">チェンジラジオボタン</label>
+        <input type = "radio" class = "change_radio">
+        <input type = "radio" class = "change_radio">
+        <div id = "result"></div>
+
+        <label for = "input_text">入力文字数</label>
+        <input type = "text" id = "input_text"><br>
+        <div id = "input_result"></div>
+    </section>
+    <hr>
+    <section>
+        <div id = "scroll_result"></div>
+
+        <div>画面リサイズ</div>
+        <div id = "resize_result"></div>
+    </section>
+    
+    <script>
+        //基本的なイベント
+        $(function(){
+            $("#button1").click(function(){
+                alert("クリックしたね");
+            });
+        });
+
+        //追加した要素にイベントを発生させる
+        $(document).on("click",".button2",function(){
+            alert("on alert");
+        })
+        //後から要素を追加しても実行される
+        $(".sample1").html('<button class="button2">追加されたボタン</button>');
+
+        //イベントメソッドの種類
+        //ダブルクリック
+        $("#dbclick").dblclick(function(){
+            alert("ダブルクリック");
+        });
+
+        //マウスボタンで押したとき＆戻したとき
+        $("#push_pull_mouse").mousedown(function(){
+            //マウスを押したとき、ボタンを赤くする
+            $(this).css('background-color','red');
+        });
+        $("#push_pull_mouse").mouseup(function(){
+            //マウスを押したとき、ボタンを赤くする
+            $(this).css('background-color','blue');
+        });
+
+        //カーソル
+        // $("#mouse_hover").mouseover(function(){
+        //     //カーソルが中に入ったら要素を赤くする
+        //     $(this).css("background-color",'red');
+        // });
+
+        // $("#mouse_hover").mousemove(function(){
+        //     //カーソルの中で動いたら、テキストを変化させる
+        //     $(this).text("移動中");
+        // });
+
+        // $("#mouse_hover").mouseout(function(){
+        //     //カーソルが外に出たら、元に戻す
+        //     $(this).css("background-color","white");
+        //     $(this).text("カーソル");
+        // });
+        //同一の要素に複数のイベントを書く場合
+        $("#mouse_hover").on({
+            //マウスが乗ったとき
+            'mouseover':function(e){
+                //カーソルが中に入ったら要素を赤くする
+                $(this).css("background-color",'red');
+                $(this).text("移動中");
+            },
+            'mouseout':function(e){
+                $(this).css("background-color","white");
+                $(this).text("カーソル");
+            }
+
+        });
+
+        //画面をタップしたとき
+        $(".screen1").on("touchstart",function(){
+            $(this).css("background-color","red");
+            $(this).text('touch');
+        });
+
+        $(".screen1").on("touchend",function(){
+            $(this).css("background-color","blue");
+            $(this).text('touch');
+        });
+
+        //画面をスワイプしたとき
+        $(".screen2").on("touchmove",function(){
+            event.preventDefault();//画面が動くのをやめる
+            //画面の位置情報を取得
+            let x = event.changedTouches[0].pageX;
+            let y = event.changedTouches[0].pageY;
+
+            $(this).text("X:"+ x + "Y:" + y);
+        })
+
+        //フォーカス
+        $("#focus_text").on({
+            'focus':function(){
+                //フォーカスが当たったら背景色を青くする
+                $(this).css("background-color","blue");
+            },
+            'blur':function(){
+                //フォーカスが外れたら背景色をデフォルトに戻す
+                $(this).css("background-color",'transparent');
+            }
+        });
+
+        //フォーム変更
+        $(".change_radio").change(function(){
+            let html = '<span style = "color:red;">ラジオボタン</span>でchangeイベントが実行されました。';
+            $("#result").html(html);
+        })
+        
+        //入力
+        $("#input_text").on("input",function(){
+            let input_text = $(this).val();
+            $("#input_result").text(input_text.length + '文字入力')
+        });
+
+        //ブラウザスクロール
+        $(window).scroll(function(e){
+            $("#scroll_result").text('ブラウザのスクロール位置：' + $(this).scrollTop());
+        });
+
+        //画面サイズ変更
+        $(window).resize(function(e){
+            let height = $(this).height();
+            let width = $(this).width();
+            $("#resize_result").text("高さ:" + height + "幅:" + width);
+        });
+    </script>
+</body>
+</html>
